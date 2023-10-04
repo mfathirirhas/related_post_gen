@@ -37,3 +37,11 @@ nim/src/nim
 nim/src/related
 
 .fake
+
+# go
+go/std_serde/std_serde
+go/go-json_serde/go-json_serde
+go/sonic_serde/sonic_serde
+go_con/std_serde/std_serde
+go_con/go-json_serde/go-json_serde
+go_con/sonic_serde/sonic_serde
