@@ -4,6 +4,10 @@ use rustc_data_structures::fx::FxHashMap;
 use serde::{Deserialize, Serialize};
 use serde_json::from_str;
 
+use tikv_jemallocator::Jemalloc;
+#[global_allocator]
+static GLOBAL: Jemalloc = Jemalloc;
+
 #[derive(Serialize, Deserialize)]
 struct Post {
     _id: String,

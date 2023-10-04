@@ -5,8 +5,26 @@ edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
+[[bin]]
+name = "sysalloc"
+path = "src/main.rs"
+
+[[bin]]
+name = "mimalloc"
+path = "src/main_mimalloc.rs"
+
+[[bin]]
+name = "jemalloc"
+path = "src/main_jemalloc.rs"
+
+[[bin]]
+name = "tcmalloc"
+path = "src/main_tcmalloc.rs"
+
 [dependencies]
 mimalloc = "0.1.39"
+tcmalloc = { version = "0.3.0", features = ["bundled"] }
+tikv-jemallocator = "0.5.4"
 num_cpus = "1.16.0"
 rayon = "1.8.0"
 rustc_data_structures = "0.0.1"

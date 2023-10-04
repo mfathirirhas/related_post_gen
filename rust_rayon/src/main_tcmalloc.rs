@@ -5,6 +5,10 @@ use rustc_data_structures::fx::FxHashMap;
 use serde::{Deserialize, Serialize};
 use serde_json::from_str;
 
+use tcmalloc::TCMalloc;
+#[global_allocator]
+static GLOBAL: TCMalloc = TCMalloc;
+
 type SString = smallstr::SmallString<[u8; 16]>;
 
 #[derive(Serialize, Deserialize)]

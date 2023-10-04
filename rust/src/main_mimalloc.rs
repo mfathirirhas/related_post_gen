@@ -4,6 +4,10 @@ use rustc_data_structures::fx::FxHashMap;
 use serde::{Deserialize, Serialize};
 use serde_json::from_str;
 
+use mimalloc::MiMalloc;
+#[global_allocator]
+static GLOBAL: MiMalloc = MiMalloc;
+
 #[derive(Serialize, Deserialize)]
 struct Post {
     _id: String,
