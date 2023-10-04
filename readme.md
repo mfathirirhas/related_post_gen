@@ -37,28 +37,28 @@ Generate related posts based on tags. Sort by the number of shared tags.
 
 ### Updated Results from github workflow ([raw data](https://github.com/jinyus/related_post_gen/blob/main/raw_results.md))
 
-| Language       | Processing Time | Total (PT + I/O) |
-| -------------- | --------------- | ---------------- |
-| Go Concurrent | 19.40 ms | 58.7 ms |
-| Rust Rayon | 22.32 ms | 42.7 ms |
-| Go | 36.83 ms | 73.2 ms |
-| Rust | 39.83 ms | 60.5 ms |
-| Java (GraalVM) | 56.00 ms | 96.4 ms |
-| Crystal | 66.93 ms | 131.1 ms |
-| Vlang | 70.18 ms | 454.2 ms |
-| Swift | 77.43 ms | 562.9 ms |
-| Odin | 85.18 ms | 381.9 ms |
-| Dart VM | 125.75 ms | 681.0 ms |
-| Dart AOT | 169.25 ms | 335.4 ms |
-| Zig | 213.00 ms | 262.0 ms |
-| Fsharp | 214.14 ms | 1.095 s |
-| JS (Deno) | 219.80 ms | 330.5 ms |
-| JS (Node) | 246.20 ms | 337.7 ms |
-| Java (JIT) | 292.15 ms | 610.2 ms |
-| Julia v2 | 667.50 ms | 5.821 s |
-| JS (Bun) | 915.60 ms | 1.004 s |
-| Numpy | 1.02 s | 1.228 s |
-| Python | 3.23 s | 3.315 s |
+| Language       | Processing Time | Total (PT + I/O) | IO Overhead |
+| -------------- | --------------- | ---------------- | ---------------- |
+| Go Concurrent | 19.40 ms | 58.7 ms | 39.3ms |
+| Rust Rayon | 22.32 ms | 42.7 ms | 20.38ms |
+| Go | 36.83 ms | 73.2 ms | 36.37ms |
+| Rust | 39.83 ms | 60.5 ms | 20.67ms |
+| Java (GraalVM) | 56.00 ms | 96.4 ms | 40.4ms |
+| Crystal | 66.93 ms | 131.1 ms | 64.17ms |
+| Vlang | 70.18 ms | 454.2 ms | 384.02ms |
+| Swift | 77.43 ms | 562.9 ms | 485.47ms |
+| Odin | 85.18 ms | 381.9 ms | 296.72ms |
+| Dart VM | 125.75 ms | 681.0 ms | 555.25ms |
+| Dart AOT | 169.25 ms | 335.4 ms | 166.15ms |
+| Zig | 213.00 ms | 262.0 ms | 49ms |
+| Fsharp | 214.14 ms | 1.095 s | 880.86ms |
+| JS (Deno) | 219.80 ms | 330.5 ms | 110.7ms |
+| JS (Node) | 246.20 ms | 337.7 ms | 91.5ms |
+| Java (JIT) | 292.15 ms | 610.2 ms | 318.05ms |
+| Julia v2 | 667.50 ms | 5.821 s | 5153.5ms |
+| JS (Bun) | 915.60 ms | 1.004 s | 88.4ms |
+| Numpy | 1.02 s | 1.228 s | 208ms |
+| Python | 3.23 s | 3.315 s | 85ms |
 
 <details>
 <summary> Old Results with details (on my machine) </summary>
