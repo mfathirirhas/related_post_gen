@@ -43,6 +43,7 @@ type Result struct {
 }
 
 func main() {
+	startIOSerde := time.Now()
 	file, err := os.Open("../posts.json")
 	if err != nil {
 		log.Panicln(err)
@@ -54,6 +55,7 @@ func main() {
 	var posts []Post
 	posts = arena.MakeSlice[Post](a, 0, 10000)
 
+	startSerde := time.Now()
 	err = json.NewDecoder(file).Decode(&posts)
 	if err != nil {
 		log.Panicln(err)
@@ -101,7 +103,21 @@ func main() {
 
 	end := time.Now()
 
-	fmt.Println("Processing time (w/o IO):", end.Sub(start))
+	duration := end.Sub(start)
+	durationSerde := end.Sub(startSerde)
+	durationIOSerde := end.Sub(startIOSerde)
+
+	serdeOverhead := durationSerde - duration
+	ioOverhead := durationIOSerde - durationSerde
+	ioSerdeOverhead := durationIOSerde - duration
+
+	fmt.Println("Processing time:", duration)
+	fmt.Println("Processing time with serde:", durationSerde)
+	fmt.Println("Processing time with IO and serde:", durationIOSerde)
+
+	fmt.Println("Overhead serde:", serdeOverhead)
+	fmt.Println("Overhead IO:", ioOverhead)
+	fmt.Println("Overhead IO & serde:", ioSerdeOverhead)
 
 	file, err = os.Create("../related_posts_go_con.json")
 	if err != nil {

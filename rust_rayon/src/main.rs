@@ -69,7 +69,9 @@ fn least_n<T: Ord>(n: usize, mut from: impl Iterator<Item = T>) -> impl Iterator
 }
 
 fn main() {
+    let start_io_serde = Instant::now();
     let json_str = std::fs::read_to_string("../posts.json").unwrap();
+    let start_serde = Instant::now();
     let posts: Vec<Post> = from_str(&json_str).unwrap();
     let num_cpus = num_cpus::get_physical(); // does IO to get num_cpus
 
@@ -124,10 +126,37 @@ fn main() {
             .collect();
 
         let end = Instant::now();
+        
+        let duration = end.duration_since(start);
+        let duration_serde = end.duration_since(start_serde);
+        let duration_io_serde = end.duration_since(start_io_serde);
+        
+        let serde_overhead = duration_serde - duration;
+        let io_overhead = duration_io_serde - duration_serde;
+        let io_serde_overhead = duration_io_serde - duration;
 
         print!(
-            "Processing time (w/o IO): {:?}\n",
-            end.duration_since(start)
+            "Processing time: {:?}\n",
+            duration
+        );
+        print!(
+            "Processing time with serde: {:?}\n",
+            duration_serde
+        );
+        print!("Processing time with IO and serde: {:?}\n",
+            duration_io_serde
+        );
+
+        print!(
+            "Overhead serde: {:?}\n",
+            serde_overhead
+        );
+        print!(
+            "Overhead IO: {:?}\n",
+            io_overhead
+        );
+        print!("Overhead IO & serde: {:?}\n",
+            io_serde_overhead
         );
 
         let json_str = serde_json::to_string(&related_posts).unwrap();
